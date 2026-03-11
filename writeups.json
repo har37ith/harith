@@ -1,15 +1,15 @@
 [
   {
-    "id": "pickle-rick-writeup",
+    "id": "comptia-aplus",
     "title": {
-      "en": "Pickle Rick - TryHackMe Walkthrough",
-      "ar": "حل تحدي Pickle Rick - مسار الويب"
+      "en": "Why CompTIA A+ is the Foundation of Cybersecurity?",
+      "ar": "لماذا تعتبر شهادة CompTIA A+ حجر الأساس في الأمن السيبراني؟"
     },
     "desc": {
-      "en": "A complete walkthrough covering web exploitation and basic Linux privilege escalation.",
-      "ar": "شرح كامل لثغرات الويب في التحدي مع كيفية تصعيد الصلاحيات في نظام لينكس."
+      "en": "My thoughts and summary after studying the CompTIA A+ curriculum.",
+      "ar": "ملخص وأفكار حول أهمية كورس CompTIA A+ للمبتدئين في المجال."
     },
     "date": "2026-03-12",
-    "file": "articles/pickle-rick.md"
+    "file": "articles/comptia-a-plus.md"
   }
 ]
