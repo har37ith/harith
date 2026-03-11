@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
     <title>Harith | Cyber Security</title>
+    <meta property="og:title" content="Harith | Cyber Security">
+    <meta property="og:description" content="Cybersecurity Engineering Student | Ethical Hacking & Penetration Testing">
+    <meta property="og:image" content="https://i.imgur.com/yeDc1fk_d.webp">
+    <meta property="og:url" content="https://har37ith.github.io/harith/">
+    <meta property="og:type" content="website">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,327 +18,155 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- Base Variables & Setup --- */
         :root {
             --bg-color: #0b0c10;
             --card-bg: rgba(22, 24, 34, 0.7);
             --card-border: rgba(255, 255, 255, 0.06);
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
-            
-            /* Unified Cyber Blue Theme */
             --main-grad: linear-gradient(90deg, #7dd3fc, #38bdf8);
             --main-blue: #38bdf8;
             --main-blue-light: rgba(56, 189, 248, 0.15);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; cursor: none !important; /* Hide default cursor */ }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 40px 40px;
-            background-position: center top;
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            transition: all 0.3s ease;
+            overflow-x: hidden;
         }
 
-        body[dir="rtl"] {
-            font-family: 'Cairo', sans-serif;
-        }
+        body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
 
-        /* --- Responsive App Container --- */
-        .app-container {
-            width: 100%;
-            max-width: 550px;
-            padding: 20px 16px 60px 16px;
-            position: relative;
+        /* Custom Scrollbar (Light Idea 4) */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--main-blue); border-radius: 10px; box-shadow: inset 0 0 6px rgba(0,0,0,0.3); }
+
+        /* Custom Cursor (Medium Idea 8) */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--main-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--main-blue-light);
+            mix-blend-mode: screen;
         }
+        @media (hover: none) { .custom-cursor { display: none; } * { cursor: auto !important; } } /* Hide on touch devices */
+
+        .app-container { width: 100%; max-width: 550px; padding: 20px 16px 60px 16px; position: relative; }
 
         @media (min-width: 768px) {
-            .app-container {
-                padding-top: 50px;
-            }
-            .card:hover:not(.no-hover) {
-                transform: translateY(-2px);
-                border-color: rgba(56, 189, 248, 0.3);
-            }
+            .app-container { padding-top: 50px; }
+            .card:hover:not(.no-hover) { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.3); }
         }
 
-        /* --- Top Bar for Language Switch --- */
-        .top-bar {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 10px;
-        }
+        .top-bar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+        .lang-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); color: var(--text-muted); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: none; backdrop-filter: blur(5px); transition: all 0.2s; }
+        .lang-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--main-blue); border-color: rgba(56, 189, 248, 0.3); }
 
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            transition: all 0.2s ease;
-            font-family: inherit;
-        }
+        .view { display: none; animation: fadeIn 0.3s ease forwards; }
+        .view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .lang-btn:hover, .lang-btn:active {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--main-blue);
-            border-color: rgba(56, 189, 248, 0.3);
-        }
-
-        /* --- View Controller --- */
-        .view {
-            display: none;
-            animation: fadeIn 0.3s ease forwards;
-        }
-        .view.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Common UI Elements --- */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 24px;
-            margin-bottom: 16px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-        }
-
+        .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px; padding: 24px; margin-bottom: 16px; backdrop-filter: blur(10px); transition: all 0.2s ease; cursor: none; display: block; text-decoration: none; }
         .card:active { transform: scale(0.98) !important; }
-        .card.no-hover { cursor: default; }
+        .card.no-hover { cursor: none; }
         .card.no-hover:active { transform: none !important; }
 
-        /* Centered Menu Cards Style */
-        .menu-card {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .menu-card { text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .menu-card .section-header { flex-direction: column; justify-content: center; margin-bottom: 8px; gap: 12px; }
+        .section-header { display: flex; align-items: center; margin-bottom: 12px; gap: 12px; }
 
-        .menu-card .section-header {
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 8px;
-            gap: 12px;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            gap: 12px;
-        }
-
-        .icon-box {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            background: var(--main-blue-light);
-            color: var(--main-blue);
-            flex-shrink: 0;
-        }
-
+        .icon-box { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; background: var(--main-blue-light); color: var(--main-blue); flex-shrink: 0; }
         .card-title { font-size: 1.3rem; font-weight: 700; margin: 0; }
         .card-desc { color: var(--text-muted); font-size: 0.95rem; font-weight: 400; }
 
-        /* --- Hero Section --- */
-        .hero-img-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+        .hero-img-container { display: flex; justify-content: center; margin-bottom: 20px; }
+        .hero-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 2px solid var(--card-border); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .quote-text { font-size: 1.05rem; font-weight: 500; line-height: 1.6; margin-bottom: 16px; text-align: center; min-height: 50px; }
         
-        .hero-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--card-border);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        /* Glitch Effect (Medium Idea 4) */
+        .glitch { position: relative; display: inline-block; font-weight: bold; }
+        .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; }
+        .glitch::before { left: 2px; text-shadow: -1px 0 red; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim 3s infinite linear alternate-reverse; }
+        .glitch::after { left: -2px; text-shadow: -1px 0 var(--main-blue); clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            20% { clip: rect(12px, 9999px, 59px, 0); }
+            40% { clip: rect(48px, 9999px, 29px, 0); }
+            60% { clip: rect(42px, 9999px, 73px, 0); }
+            80% { clip: rect(63px, 9999px, 27px, 0); }
+            100% { clip: rect(34px, 9999px, 55px, 0); }
         }
 
-        .quote-text {
-            font-size: 1.05rem;
-            font-weight: 500;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .tags-container {
-            display: flex;
-            justify-content: center;
-            direction: ltr;
-        }
-
-        .tags {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.05);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border: 1px solid var(--card-border);
-        }
+        .tags-container { display: flex; justify-content: center; direction: ltr; }
+        .tags { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--text-muted); border: 1px solid var(--card-border); }
         .tags .dot { color: var(--main-blue); font-size: 10px; margin-right: 2px;}
 
-        /* --- Sub-pages Styling --- */
-        .page-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        
-        .back-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--main-blue);
-        }
-        
-        body[dir="rtl"] .back-btn i {
-            transform: scaleX(-1);
-        }
+        .page-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .back-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); color: var(--text-main); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .back-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--main-blue); }
+        body[dir="rtl"] .back-btn i { transform: scaleX(-1); }
 
-        .page-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 0;
-        }
-
+        .page-title { font-size: 2rem; font-weight: 800; margin: 0; }
         .txt-gradient { background: var(--main-grad); -webkit-background-clip: text; color: transparent; }
-
         .content-text { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
         .item-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
         .item-org { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
 
-        /* Status Badges */
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+        .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; margin-bottom: 10px; }
         .badge-completed { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
         .badge-progress { background: var(--main-blue-light); color: var(--main-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
 
-        /* --- Progress Bar Styles --- */
-        .progress-wrap {
-            margin-top: 16px;
-            border-top: 1px solid var(--card-border);
-            padding-top: 12px;
-        }
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-        .progress-bg {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            direction: ltr; /* Always animate LTR */
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--main-blue);
-            border-radius: 10px;
-            transition: width 1s ease-in-out;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-        }
-        .progress-fill.completed {
-            background: #4ade80;
-            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
-        }
+        .progress-wrap { margin-top: 16px; border-top: 1px solid var(--card-border); padding-top: 12px; }
+        .progress-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
+        .progress-bg { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.02); direction: ltr; }
+        .progress-fill { height: 100%; background: var(--main-blue); border-radius: 10px; transition: width 1s ease-in-out; box-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+        .progress-fill.completed { background: #4ade80; box-shadow: 0 0 10px rgba(74, 222, 128, 0.5); }
 
-        .link-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 16px;
-            margin-bottom: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-            direction: ltr;
-        }
-        .link-card:active { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
-        @media (min-width: 768px) {
-            .link-card:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
-        }
+        .link-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; margin-bottom: 12px; text-decoration: none; color: var(--text-main); border: 1px solid transparent; transition: all 0.3s ease; direction: ltr; }
+        
+        /* Glow Effect for Icons (Light Idea 8) */
+        .link-card i { transition: text-shadow 0.3s ease; }
+        .link-card:hover i.icon { text-shadow: 0 0 15px currentColor; }
+        .link-card:hover { border-color: rgba(56, 189, 248, 0.3); background: rgba(255,255,255,0.05); }
+
         .link-card .left { display: flex; align-items: center; gap: 16px; }
         .link-card .icon { font-size: 1.5rem; }
         .link-card .name { font-weight: 600; font-size: 1.1rem; }
         .link-card .user { color: var(--text-muted); font-size: 0.9rem; }
-        .link-card i.fa-arrow-up-right-from-square { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Modal Styles (Medium Idea 2) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 12, 16, 0.8); backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--card-bg); border: 1px solid var(--main-blue); border-radius: 20px; padding: 30px; width: 90%; max-width: 400px; text-align: center; position: relative; animation: fadeIn 0.3s; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: var(--text-muted); cursor: none; }
+        .close-btn:hover { color: red; }
+
+        /* Filters */
+        .filter-btn { background: transparent; border: 1px solid var(--card-border); color: var(--text-muted); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; cursor: none; margin-right: 5px; margin-bottom: 15px; transition: 0.3s; }
+        .filter-btn.active { background: var(--main-blue-light); color: var(--main-blue); border-color: var(--main-blue); }
 
         .footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px; }
     </style>
 </head>
 <body>
+
+    <div class="custom-cursor" id="cursor"></div>
 
     <div class="app-container">
 
@@ -347,11 +181,7 @@
             </div>
 
             <div class="card no-hover">
-                <p class="quote-text lang-text" 
-                   data-en="Cybersecurity Engineering Student | Interested in Ethical Hacking & Penetration Testing" 
-                   data-ar="طالب هندسة أمن سيبراني | مهتم بمجال الهاكينج الأخلاقي واختبار الاختراق">
-                   Cybersecurity Engineering Student | Interested in Ethical Hacking & Penetration Testing
-                </p>
+                <p class="quote-text" id="typing-tagline"></p>
                 <div class="tags-container">
                     <div class="tags">
                         <span class="dot">●</span> Recon • Exploit • Secure
@@ -375,6 +205,14 @@
                 <p class="card-desc lang-text" data-en="My learning path, studies, and achieved certifications." data-ar="مساري التعليمي، التقنيات التي أدرسها، والشهادات.">My learning path, studies, and achieved certifications.</p>
             </div>
 
+            <div class="card menu-card" onclick="openView('latest')">
+                <div class="section-header">
+                    <div class="icon-box" style="background: rgba(34, 197, 94, 0.15); color: #4ade80;"><i class="fas fa-bolt"></i></div>
+                    <h2 class="card-title txt-gradient lang-text" data-en="Latest" data-ar="أحدث النشاطات">Latest</h2>
+                </div>
+                <p class="card-desc lang-text" data-en="CTF, GitHub repos, and Write-ups." data-ar="تحديات، مستودعات جيت هاب، ومقالات.">CTF, GitHub repos, and Write-ups.</p>
+            </div>
+
             <div class="card menu-card" onclick="openView('contact')">
                 <div class="section-header">
                     <div class="icon-box"><i class="fas fa-envelope"></i></div>
@@ -383,8 +221,9 @@
                 <p class="card-desc lang-text" data-en="Let's connect on Telegram, LinkedIn, or GitHub." data-ar="حساباتي الموثقة على تليجرام، لينكدإن، و GitHub.">Let's connect on Telegram, LinkedIn, or GitHub.</p>
             </div>
 
-            <div class="footer lang-text" data-en="Crafted by Harith<br>2026" data-ar="صُنع بواسطة حارث<br>2026">
-                Crafted by Harith<br>2026
+            <div class="footer">
+                <span class="lang-text" data-en="Crafted by Harith<br>" data-ar="صُنع بواسطة حارث<br>">Crafted by Harith<br></span>
+                <span id="current-year"></span>
             </div>
         </div>
 
@@ -400,8 +239,6 @@
                 <p class="content-text lang-text" 
                    data-en="Hello, I'm Harith from Iraq, a Cybersecurity Engineering student highly interested in Penetration Testing and Offensive Security.<br><br>Currently, I am following a structured side-learning path focused on practical cybersecurity skills. I am passionate about understanding how systems operate, discovering vulnerabilities, and developing my technical skills through hands-on practice." 
                    data-ar="أهلاً، أنا حارث من العراق طالب هندسة الأمن السيبراني، ومهتم جداً بمجال اختبار الاختراق (Penetration Testing) والأمن الهجومي (Offensive Security).<br><br>حالياً أتبع مساراً تعليمياً منظماً بشكل جانبي يركز على المهارات العملية للسايبر سكيورتي. وشغوف بفهم كيفية عمل الأنظمة واكتشاف ثغراتها وتطوير مهاراتي التقنية من خلال التطبيق العملي.">
-                    Hello, I'm Harith from Iraq, a Cybersecurity Engineering student highly interested in Penetration Testing and Offensive Security.<br><br>
-                    Currently, I am following a structured side-learning path focused on practical cybersecurity skills. I am passionate about understanding how systems operate, discovering vulnerabilities, and developing my technical skills through hands-on practice.
                 </p>
             </div>
         </div>
@@ -419,127 +256,106 @@
                 </p>
             </div>
             
-            <div class="card no-hover">
-                <div class="status-badge badge-completed">
-                    <i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span>
+            <div class="card" onclick="openCertModal('CompTIA A+', 'CompTIA')" style="border-color: rgba(74, 222, 128, 0.5);">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <div class="status-badge badge-completed">
+                            <i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span>
+                        </div>
+                        <h2 class="item-title">CompTIA A+</h2>
+                        <div class="item-org">CompTIA</div>
+                    </div>
+                    <i class="fas fa-expand" style="color: var(--text-muted); font-size: 0.9rem;"></i>
                 </div>
-                <h2 class="item-title">CompTIA A+</h2>
-                <div class="item-org">CompTIA</div>
-                
                 <div class="progress-wrap">
                     <div class="progress-header">
                         <span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span>
                         <span>100%</span>
                     </div>
-                    <div class="progress-bg">
-                        <div class="progress-fill completed" style="width: 100%;"></div>
-                    </div>
+                    <div class="progress-bg"><div class="progress-fill completed" style="width: 100%;"></div></div>
                 </div>
             </div>
 
             <div class="card no-hover">
-                <div class="status-badge badge-progress">
-                    <i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress / Learning" data-ar="قيد الدراسة">In Progress / Learning</span>
-                </div>
+                <div class="status-badge badge-progress"><i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress" data-ar="قيد الدراسة">In Progress</span></div>
                 <h2 class="item-title">Network</h2>
                 <div class="item-org">TryHackMe</div>
-                
                 <div class="progress-wrap">
-                    <div class="progress-header">
-                        <span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span>
-                        <span>25%</span>
-                    </div>
-                    <div class="progress-bg">
-                        <div class="progress-fill" style="width: 25%;"></div>
-                    </div>
+                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>25%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 25%;"></div></div>
                 </div>
             </div>
 
             <div class="card no-hover">
-                <div class="status-badge badge-progress">
-                    <i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress / Learning" data-ar="قيد الدراسة">In Progress / Learning</span>
-                </div>
+                <div class="status-badge badge-progress"><i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress" data-ar="قيد الدراسة">In Progress</span></div>
                 <h2 class="item-title">Python</h2>
                 <div class="item-org lang-text" data-en="Programming Language" data-ar="لغة برمجة">Programming Language</div>
-                
                 <div class="progress-wrap">
-                    <div class="progress-header">
-                        <span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span>
-                        <span>10%</span>
-                    </div>
-                    <div class="progress-bg">
-                        <div class="progress-fill" style="width: 10%;"></div>
-                    </div>
+                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>10%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 10%;"></div></div>
                 </div>
             </div>
 
             <div class="card no-hover">
-                <div class="status-badge badge-progress">
-                    <i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress / Learning" data-ar="قيد الدراسة">In Progress / Learning</span>
-                </div>
+                <div class="status-badge badge-progress"><i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress" data-ar="قيد الدراسة">In Progress</span></div>
                 <h2 class="item-title">CompTIA Linux+</h2>
                 <div class="item-org">CompTIA</div>
-                
                 <div class="progress-wrap">
-                    <div class="progress-header">
-                        <span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span>
-                        <span>40%</span>
-                    </div>
-                    <div class="progress-bg">
-                        <div class="progress-fill" style="width: 40%;"></div>
-                    </div>
+                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>40%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 40%;"></div></div>
                 </div>
             </div>
 
             <div class="card no-hover">
-                <div class="status-badge badge-progress">
-                    <i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress / Learning" data-ar="قيد الدراسة">In Progress / Learning</span>
-                </div>
+                <div class="status-badge badge-progress"><i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress" data-ar="قيد الدراسة">In Progress</span></div>
                 <h2 class="item-title">CompTIA Security+</h2>
                 <div class="item-org">CompTIA</div>
-                
                 <div class="progress-wrap">
-                    <div class="progress-header">
-                        <span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span>
-                        <span>5%</span>
-                    </div>
-                    <div class="progress-bg">
-                        <div class="progress-fill" style="width: 5%;"></div>
-                    </div>
+                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>5%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 5%;"></div></div>
                 </div>
             </div>
 
             <div class="card no-hover">
-                <div class="status-badge badge-progress">
-                    <i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress / Learning" data-ar="قيد الدراسة">In Progress / Learning</span>
-                </div>
+                <div class="status-badge badge-progress"><i class="fas fa-spinner fa-spin"></i> <span class="lang-text" data-en="In Progress" data-ar="قيد الدراسة">In Progress</span></div>
                 <h2 class="item-title">eJPT v1</h2>
                 <div class="item-org">eLearnSecurity</div>
-                
                 <div class="progress-wrap">
-                    <div class="progress-header">
-                        <span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span>
-                        <span>1%</span>
-                    </div>
-                    <div class="progress-bg">
-                        <div class="progress-fill" style="width: 1%;"></div>
-                    </div>
+                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>1%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 1%;"></div></div>
                 </div>
             </div>
+        </div>
 
-            <div class="card" onclick="openView('ctf')" style="margin-top: 32px; border-color: var(--main-blue); background: rgba(56, 189, 248, 0.05);">
-                <div class="section-header" style="justify-content: space-between; margin: 0;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div class="icon-box" style="background: rgba(56, 189, 248, 0.2);"><i class="fas fa-flag"></i></div>
-                        <div>
-                            <h2 class="item-title txt-gradient" style="margin:0; font-size: 1.3rem;">CTF Challenges</h2>
-                            <div class="card-desc lang-text" data-en="My solved boxes and challenges" data-ar="تحديات وسيرفرات قمت بحلها">My solved boxes and challenges</div>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-right" style="color: var(--main-blue);"></i>
-                </div>
+        <div id="view-latest" class="view">
+            <div class="page-header">
+                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
+                <h1 class="page-title txt-gradient lang-text" data-en="Latest" data-ar="أحدث النشاطات">Latest</h1>
             </div>
 
+            <div class="card" onclick="openView('ctf')" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="icon-box" style="background: rgba(251, 113, 133, 0.15); color: #fb7185;"><i class="fas fa-flag"></i></div>
+                    <h2 class="item-title" style="margin:0;">CTF</h2>
+                </div>
+                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+            </div>
+
+            <div class="card" onclick="openView('github')" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="icon-box" style="background: rgba(255, 255, 255, 0.1); color: #fff;"><i class="fab fa-github"></i></div>
+                    <h2 class="item-title" style="margin:0;">GitHub Repos</h2>
+                </div>
+                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+            </div>
+
+            <div class="card" onclick="openView('writeups')" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="icon-box" style="background: rgba(52, 211, 153, 0.15); color: #34d399;"><i class="fas fa-book-open"></i></div>
+                    <h2 class="item-title" style="margin:0;" class="lang-text" data-en="Write-ups" data-ar="المقالات">Write-ups</h2>
+                </div>
+                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+            </div>
         </div>
 
         <div id="view-ctf" class="view">
@@ -548,18 +364,49 @@
                 <h1 class="page-title txt-gradient">CTF</h1>
             </div>
 
-            <a href="https://tryhackme.com/module/network-fundamentals" target="_blank" class="card">
+            <div class="card no-hover" style="padding: 10px; display:flex; justify-content:center; background: #111;">
+                <img src="https://tryhackme-badges.s3.amazonaws.com/har37ith.png" alt="TryHackMe Rank" style="max-width: 100%; border-radius: 8px;" onerror="this.style.display='none'">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <button class="filter-btn active" onclick="filterCTF('all', this)">All</button>
+                <button class="filter-btn" onclick="filterCTF('thm', this)">TryHackMe</button>
+            </div>
+
+            <a href="https://tryhackme.com/module/network-fundamentals" target="_blank" class="card ctf-item thm">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <div>
-                        <div class="status-badge badge-completed">
-                            <i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span>
-                        </div>
+                        <div class="status-badge badge-completed"><i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span></div>
                         <h2 class="item-title" style="color: var(--text-main);">Network Fundamentals</h2>
                         <div class="item-org">TryHackMe</div>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); margin-top: 10px;"></i>
                 </div>
             </a>
+        </div>
+
+        <div id="view-github" class="view">
+            <div class="page-header">
+                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
+                <h1 class="page-title txt-gradient lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب">GitHub Repos</h1>
+            </div>
+            <p class="content-text lang-text" data-en="Fetching latest repositories..." data-ar="جاري جلب أحدث المستودعات..." style="margin-bottom:20px;" id="gh-loading">Fetching...</p>
+            
+            <div id="github-repos-container"></div>
+        </div>
+
+        <div id="view-writeups" class="view">
+            <div class="page-header">
+                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
+                <h1 class="page-title txt-gradient lang-text" data-en="Write-ups" data-ar="المقالات">Write-ups</h1>
+            </div>
+            
+            <div class="card no-hover" style="border-style: dashed;">
+                <div style="text-align:center; color: var(--text-muted); padding: 20px 0;">
+                    <i class="fas fa-keyboard fa-2x" style="margin-bottom:10px; color:var(--main-blue);"></i>
+                    <p class="lang-text" data-en="New write-ups and walkthroughs will be published here soon." data-ar="سيتم نشر مقالات وحلول التحديات هنا قريباً.">New write-ups and walkthroughs will be published here soon.</p>
+                </div>
+            </div>
         </div>
 
         <div id="view-contact" class="view">
@@ -569,7 +416,7 @@
             </div>
             
             <div class="card no-hover" style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-                <h2 class="item-title txt-gradient lang-text" data-en="Harith" data-ar="حارث" style="margin: 0; font-size: 1.5rem; letter-spacing: 1px;">Harith</h2>
+                <h2 class="item-title txt-gradient glitch lang-text" data-text="Harith" data-en="Harith" data-ar="Harith" style="margin: 0; font-size: 1.8rem; letter-spacing: 2px;">Harith</h2>
             </div>
 
             <div class="card no-hover" style="padding: 16px;">
@@ -610,45 +457,158 @@
 
     </div>
 
+    <div id="certModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCertModal()">&times;</span>
+            <h2 class="txt-gradient" id="modalCertTitle">Certificate</h2>
+            <p id="modalCertOrg" style="color:var(--text-muted); font-size:0.9rem; margin-bottom:15px;"></p>
+            <div style="width:100%; height:200px; background:rgba(255,255,255,0.02); border: 2px dashed var(--main-blue); display:flex; align-items:center; justify-content:center; border-radius:12px;">
+                <div style="text-align:center;">
+                    <i class="fas fa-award fa-3x" style="color:var(--main-blue); margin-bottom:10px;"></i>
+                    <p class="lang-text" data-en="Certificate Document" data-ar="وثيقة الشهادة" style="color:var(--text-muted); font-size:0.85rem;">Certificate Document</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // --- 1. Routing Logic (Hash Routing) ---
-        function openView(viewId) {
-            window.location.hash = viewId;
+        // --- Custom Cursor Logic (Medium Idea 8) ---
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // --- Auto Year (Light Idea 5) ---
+        document.getElementById('current-year').innerText = new Date().getFullYear();
+
+        // --- Typing Effect (Light Idea 3) ---
+        const taglineEn = "Cybersecurity Engineering Student | Interested in Ethical Hacking & Penetration Testing";
+        const taglineAr = "طالب هندسة أمن سيبراني | مهتم بمجال الهاكينج الأخلاقي واختبار الاختراق";
+        let typeTimeout;
+        
+        function typeTagline() {
+            const el = document.getElementById('typing-tagline');
+            const text = currentLang === 'en' ? taglineEn : taglineAr;
+            el.innerHTML = '';
+            let i = 0;
+            clearTimeout(typeTimeout);
+            
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    typeTimeout = setTimeout(type, 35);
+                }
+            }
+            type();
         }
+
+        // --- Routing Logic ---
+        function openView(viewId) { window.location.hash = viewId; }
 
         function handleRouteChange() {
             let hash = window.location.hash.replace('#', '');
             if (!hash) hash = 'dashboard';
 
-            document.querySelectorAll('.view').forEach(el => {
-                el.classList.remove('active');
-            });
+            document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
             
             const target = document.getElementById('view-' + hash);
             if (target) {
                 target.classList.add('active');
                 window.scrollTo(0, 0); 
+                
+                // Fetch GitHub Repos dynamically when opening view (Strong Idea 2)
+                if(hash === 'github' && !window.ghLoaded) { fetchGitHubRepos(); }
+                // Re-trigger typing when dashboard opens
+                if(hash === 'dashboard') { typeTagline(); }
             } else {
                 document.getElementById('view-dashboard').classList.add('active');
             }
         }
         window.addEventListener('hashchange', handleRouteChange);
-        window.addEventListener('load', handleRouteChange);
+        window.addEventListener('load', () => { handleRouteChange(); typeTagline(); });
 
-        // --- 2. Language Switch Logic ---
-        let currentLang = 'en'; // اللغة الافتراضية
-
+        // --- Language Switch Logic ---
+        let currentLang = 'en';
         function toggleLanguage() {
             currentLang = (currentLang === 'en') ? 'ar' : 'en';
-            
             document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.getElementById('lang-btn').innerText = (currentLang === 'en') ? 'عربي' : 'EN';
             
-            const btn = document.getElementById('lang-btn');
-            btn.innerText = (currentLang === 'en') ? 'عربي' : 'EN';
-
             document.querySelectorAll('.lang-text').forEach(el => {
-                el.innerHTML = el.getAttribute('data-' + currentLang);
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute('data-' + currentLang);
+                } else {
+                    el.innerHTML = el.getAttribute('data-' + currentLang);
+                }
             });
+            typeTagline(); // Re-type in the new language
+        }
+
+        // --- Modal Logic (Medium Idea 2) ---
+        function openCertModal(title, org) {
+            document.getElementById('modalCertTitle').innerText = title;
+            document.getElementById('modalCertOrg').innerText = org;
+            document.getElementById('certModal').style.display = 'flex';
+        }
+        function closeCertModal() {
+            document.getElementById('certModal').style.display = 'none';
+        }
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('certModal')) closeCertModal();
+        }
+
+        // --- CTF Filter Logic (Medium Idea 3) ---
+        function filterCTF(type, btn) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Filter items
+            const items = document.querySelectorAll('.ctf-item');
+            items.forEach(item => {
+                if(type === 'all' || item.classList.contains(type)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // --- GitHub API Fetch (Strong Idea 2) ---
+        async function fetchGitHubRepos() {
+            const container = document.getElementById('github-repos-container');
+            const loading = document.getElementById('gh-loading');
+            try {
+                // Fetching your actual GitHub repositories dynamically
+                const response = await fetch('https://api.github.com/users/har37ith/repos?sort=updated&per_page=4');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const repos = await response.json();
+                
+                loading.style.display = 'none';
+                container.innerHTML = '';
+                
+                repos.forEach(repo => {
+                    const desc = repo.description ? repo.description : (currentLang === 'en' ? 'No description provided.' : 'لا يوجد وصف متاح.');
+                    const lang = repo.language ? `<span style="color:var(--main-blue); font-size:0.8rem;">● ${repo.language}</span>` : '';
+                    
+                    const card = `
+                    <a href="${repo.html_url}" target="_blank" class="card" style="display:block;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <h2 class="item-title" style="margin:0;"><i class="fab fa-github" style="margin-right:8px; color:var(--text-muted);"></i>${repo.name}</h2>
+                            <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); font-size:0.8rem;"></i>
+                        </div>
+                        <p class="content-text" style="font-size:0.9rem; margin-bottom:10px;">${desc}</p>
+                        ${lang}
+                    </a>`;
+                    container.innerHTML += card;
+                });
+                window.ghLoaded = true; // Prevent fetching again
+            } catch (error) {
+                loading.innerText = currentLang === 'en' ? 'Failed to load repositories.' : 'فشل في تحميل المستودعات.';
+            }
         }
     </script>
 </body>
