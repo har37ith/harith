@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Harith | Cyber Security</title>
-    <meta property="og:title" content="Harith | Cyber Security">
-    <meta property="og:description" content="Cybersecurity Engineering Student | Ethical Hacking & Penetration Testing">
-    <meta property="og:image" content="https://i.imgur.com/yeDc1fk_d.webp">
-    <meta property="og:url" content="https://har37ith.github.io/harith/">
-    <meta property="og:type" content="website">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
         :root {
@@ -37,47 +33,24 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            overflow-x: hidden;
+            background-size: 40px 40px; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; overflow-x: hidden;
         }
 
         body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: var(--main-blue); border-radius: 10px; box-shadow: inset 0 0 6px rgba(0,0,0,0.3); }
+        ::-webkit-scrollbar-thumb { background: var(--main-blue); border-radius: 10px; }
 
-        /* Custom Cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--main-blue);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s;
-            z-index: 9999;
-            box-shadow: 0 0 10px var(--main-blue-light);
-            mix-blend-mode: screen;
-        }
+        .custom-cursor { position: fixed; width: 20px; height: 20px; border: 2px solid var(--main-blue); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); transition: transform 0.1s; z-index: 9999; box-shadow: 0 0 10px var(--main-blue-light); mix-blend-mode: screen; }
         @media (hover: none) { .custom-cursor { display: none; } * { cursor: auto !important; } }
 
         .app-container { width: 100%; max-width: 550px; padding: 20px 16px 60px 16px; position: relative; }
-
-        @media (min-width: 768px) {
-            .app-container { padding-top: 50px; }
-            .card:hover:not(.no-hover) { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.3); }
-        }
+        @media (min-width: 768px) { .app-container { padding-top: 50px; } .card:hover:not(.no-hover) { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.3); } }
 
         .top-bar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
         .lang-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); color: var(--text-muted); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: none; backdrop-filter: blur(5px); transition: all 0.2s; }
-        .lang-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--main-blue); border-color: rgba(56, 189, 248, 0.3); }
+        .lang-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--main-blue); }
 
         .view { display: none; animation: fadeIn 0.3s ease forwards; }
         .view.active { display: block; }
@@ -89,8 +62,7 @@
         .card.no-hover:active { transform: none !important; }
 
         .menu-card { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .menu-card .section-header { flex-direction: column; justify-content: center; margin-bottom: 8px; gap: 12px; }
-        .section-header { display: flex; align-items: center; margin-bottom: 12px; gap: 12px; }
+        .section-header { display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 12px; gap: 12px; }
 
         .icon-box { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; background: var(--main-blue-light); color: var(--main-blue); flex-shrink: 0; }
         .card-title { font-size: 1.3rem; font-weight: 700; margin: 0; }
@@ -139,12 +111,9 @@
         .progress-fill.completed { background: #4ade80; box-shadow: 0 0 10px rgba(74, 222, 128, 0.5); }
 
         .link-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; margin-bottom: 12px; text-decoration: none; color: var(--text-main); border: 1px solid transparent; transition: all 0.3s ease; direction: ltr; }
-        
-        /* Glow Effect for Icons */
         .link-card i { transition: text-shadow 0.3s ease; }
         .link-card:hover i.icon { text-shadow: 0 0 15px currentColor; }
         .link-card:hover { border-color: rgba(56, 189, 248, 0.3); background: rgba(255,255,255,0.05); }
-
         .link-card .left { display: flex; align-items: center; gap: 16px; }
         .link-card .icon { font-size: 1.5rem; }
         .link-card .name { font-weight: 600; font-size: 1.1rem; }
@@ -162,205 +131,143 @@
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
+        /* Article Markdown Styling */
+        .markdown-body { color: var(--text-main); line-height: 1.8; font-size: 1.05rem; }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: var(--main-blue); margin-top: 24px; margin-bottom: 12px; font-weight: 700; }
+        .markdown-body p { margin-bottom: 16px; color: var(--text-muted); }
+        .markdown-body pre { background: #111; border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; overflow-x: auto; margin-bottom: 20px; direction: ltr; }
+        .markdown-body code { font-family: 'Courier New', Courier, monospace; color: #f472b6; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        .markdown-body pre code { background: transparent; padding: 0; color: #a855f7; }
+        .markdown-body a { color: var(--main-blue); text-decoration: none; }
+        .markdown-body a:hover { text-decoration: underline; }
+        .markdown-body ul, .markdown-body ol { margin-bottom: 16px; padding-inline-start: 20px; color: var(--text-muted); }
+        .markdown-body img { max-width: 100%; border-radius: 12px; margin-bottom: 16px; border: 1px solid var(--card-border); }
+        
+        .loading-text { text-align: center; color: var(--main-blue); font-weight: bold; margin: 20px 0; }
+
         .footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px; }
     </style>
 </head>
 <body>
-
     <div class="custom-cursor" id="cursor"></div>
-
     <div class="app-container">
-
         <div class="top-bar">
             <button class="lang-btn" id="lang-btn" onclick="toggleLanguage()">عربي</button>
         </div>
 
         <div id="view-dashboard" class="view active">
-            
-            <div class="hero-img-container">
-                <img src="https://i.imgur.com/yeDc1fk_d.webp?maxwidth=760&fidelity=grand" alt="Harith Profile" class="hero-img">
-            </div>
-
+            <div class="hero-img-container"><img src="https://i.imgur.com/yeDc1fk_d.webp?maxwidth=760&fidelity=grand" class="hero-img"></div>
             <div class="card no-hover">
                 <p class="quote-text" id="typing-tagline"></p>
-                <div class="tags-container">
-                    <div class="tags">
-                        <span class="dot">●</span> Recon <span class="dot" style="margin: 0 8px;">●</span> Exploit <span class="dot" style="margin: 0 8px;">●</span> Secure
-                    </div>
-                </div>
+                <div class="tags-container"><div class="tags"><span class="dot">●</span> Recon <span class="dot" style="margin: 0 8px;">●</span> Exploit <span class="dot" style="margin: 0 8px;">●</span> Secure</div></div>
             </div>
-
+            
             <div class="card menu-card" onclick="openView('about')">
-                <div class="section-header">
-                    <div class="icon-box"><i class="fas fa-user"></i></div>
-                    <h2 class="card-title txt-gradient lang-text" data-en="About" data-ar="نبذة">About</h2>
-                </div>
+                <div class="section-header"><div class="icon-box"><i class="fas fa-user"></i></div><h2 class="card-title txt-gradient lang-text" data-en="About" data-ar="نبذة">About</h2></div>
                 <p class="card-desc lang-text" data-en="My journey, mindset, and passion for cybersecurity." data-ar="رحلتي، عقليتي، وشغفي في عالم الأمن السيبراني.">My journey, mindset, and passion for cybersecurity.</p>
             </div>
 
             <div class="card menu-card" onclick="openView('latest')">
-                <div class="section-header">
-                    <div class="icon-box"><i class="fas fa-bolt"></i></div>
-                    <h2 class="card-title txt-gradient lang-text" data-en="Latest" data-ar="أحدث النشاطات">Latest</h2>
-                </div>
+                <div class="section-header"><div class="icon-box"><i class="fas fa-bolt"></i></div><h2 class="card-title txt-gradient lang-text" data-en="Latest" data-ar="أحدث النشاطات">Latest</h2></div>
                 <p class="card-desc lang-text" data-en="My recent technical activities and practical achievements." data-ar="أحدث نشاطاتي التقنية وإنجازاتي العملية.">My recent technical activities and practical achievements.</p>
             </div>
 
             <div class="card menu-card" onclick="openView('learning')">
-                <div class="section-header">
-                    <div class="icon-box"><i class="fas fa-certificate"></i></div>
-                    <h2 class="card-title txt-gradient lang-text" data-en="Learning" data-ar="التعلم والشهادات">Learning</h2>
-                </div>
+                <div class="section-header"><div class="icon-box"><i class="fas fa-certificate"></i></div><h2 class="card-title txt-gradient lang-text" data-en="Learning" data-ar="التعلم والشهادات">Learning</h2></div>
                 <p class="card-desc lang-text" data-en="Continuous growth, technical paths, and certifications." data-ar="التطور المستمر، المسارات التقنية، والشهادات.">Continuous growth, technical paths, and certifications.</p>
             </div>
 
             <div class="card menu-card" onclick="openView('contact')">
-                <div class="section-header">
-                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
-                    <h2 class="card-title txt-gradient lang-text" data-en="Contact Me" data-ar="تواصل معي">Contact Me</h2>
-                </div>
+                <div class="section-header"><div class="icon-box"><i class="fas fa-envelope"></i></div><h2 class="card-title txt-gradient lang-text" data-en="Contact Me" data-ar="تواصل معي">Contact Me</h2></div>
                 <p class="card-desc lang-text" data-en="Ways to reach out, collaborate, and connect with me." data-ar="طرق التواصل، التعاون، والشبكات المهنية.">Ways to reach out, collaborate, and connect with me.</p>
             </div>
 
-            <div class="footer">
-                <span class="lang-text" data-en="Crafted by Harith<br>" data-ar="صُنع بواسطة حارث<br>">Crafted by Harith<br></span>
-                <span id="current-year"></span>
+            <div class="footer"><span class="lang-text" data-en="Crafted by Harith<br>" data-ar="صُنع بواسطة حارث<br>">Crafted by Harith<br></span><span id="current-year"></span></div>
+        </div>
+
+        <div id="view-latest" class="view">
+            <div class="page-header"><button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button><h1 class="page-title txt-gradient lang-text" data-en="Latest" data-ar="أحدث النشاطات">Latest</h1></div>
+            
+            <div class="card" onclick="openView('ctf')" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(251, 113, 133, 0.15); color: #fb7185;"><i class="fas fa-flag"></i></div><h2 class="item-title lang-text" data-en="CTF" data-ar="تحديات التقاط العلم" style="margin:0;">CTF</h2></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+            </div>
+            <div class="card" onclick="openView('github')" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(255, 255, 255, 0.1); color: #fff;"><i class="fab fa-github"></i></div><h2 class="item-title lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب" style="margin:0;">GitHub Repos</h2></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+            </div>
+            <div class="card" onclick="openView('writeups')" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(52, 211, 153, 0.15); color: #34d399;"><i class="fas fa-book-open"></i></div><h2 class="item-title lang-text" data-en="Write-ups" data-ar="كتاباتي" style="margin:0;">Write-ups</h2></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+            </div>
+            <div class="card" onclick="showSoonToast()" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;"><i class="fas fa-file-pdf"></i></div><h2 class="item-title lang-text" data-en="My CV" data-ar="سيرتي الذاتية" style="margin:0;">My CV</h2></div><i class="fas fa-download" style="color:var(--text-muted);"></i>
             </div>
         </div>
 
         <div id="view-about" class="view">
-            <div class="page-header">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="page-title txt-gradient lang-text" data-en="About" data-ar="نبذة">About</h1>
-            </div>
-            
+            <div class="page-header"><button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button><h1 class="page-title txt-gradient lang-text" data-en="About" data-ar="نبذة">About</h1></div>
             <div class="card no-hover">
-                <h2 class="item-title lang-text" data-en="Introduction" data-ar="مقدمة">Introduction</h2>
-                <br>
-                <p class="content-text lang-text" 
-                   data-en="Hello, I'm Harith from Iraq, a Cybersecurity Engineering student highly interested in Penetration Testing and Offensive Security.<br><br>Currently, I am following a structured side-learning path focused on practical cybersecurity skills. I am passionate about understanding how systems operate, discovering vulnerabilities, and developing my technical skills through hands-on practice." 
-                   data-ar="أهلاً، أنا حارث من العراق طالب هندسة الأمن السيبراني، ومهتم جداً بمجال اختبار الاختراق (Penetration Testing) والأمن الهجومي (Offensive Security).<br><br>حالياً أتبع مساراً تعليمياً منظماً بشكل جانبي يركز على المهارات العملية للسايبر سكيورتي. وشغوف بفهم كيفية عمل الأنظمة واكتشاف ثغراتها وتطوير مهاراتي التقنية من خلال التطبيق العملي.">
-                   Hello, I'm Harith from Iraq, a Cybersecurity Engineering student highly interested in Penetration Testing and Offensive Security.<br><br>Currently, I am following a structured side-learning path focused on practical cybersecurity skills. I am passionate about understanding how systems operate, discovering vulnerabilities, and developing my technical skills through hands-on practice.
+                <h2 class="item-title lang-text" data-en="Introduction" data-ar="مقدمة">Introduction</h2><br>
+                <p class="content-text lang-text" data-en="Hello, I'm Harith from Iraq, a Cybersecurity Engineering student highly interested in Penetration Testing and Offensive Security.<br><br>Currently, I am following a structured side-learning path focused on practical cybersecurity skills. I am passionate about understanding how systems operate, discovering vulnerabilities, and developing my technical skills through hands-on practice." data-ar="أهلاً، أنا حارث من العراق طالب هندسة الأمن السيبراني، ومهتم جداً بمجال اختبار الاختراق (Penetration Testing) والأمن الهجومي (Offensive Security).<br><br>حالياً أتبع مساراً تعليمياً منظماً بشكل جانبي يركز على المهارات العملية للسايبر سكيورتي. وشغوف بفهم كيفية عمل الأنظمة واكتشاف ثغراتها وتطوير مهاراتي التقنية من خلال التطبيق العملي.">
+                   Hello, I'm Harith from Iraq...
                 </p>
             </div>
         </div>
 
         <div id="view-learning" class="view">
-            <div class="page-header">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="page-title txt-gradient lang-text" data-en="Learning" data-ar="التعلم والشهادات">Learning</h1>
-            </div>
-
+            <div class="page-header"><button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button><h1 class="page-title txt-gradient lang-text" data-en="Learning" data-ar="التعلم والشهادات">Learning</h1></div>
             <div class="card no-hover" style="background: var(--main-blue-light); border-color: rgba(56, 189, 248, 0.2); text-align: center;">
-                <p class="content-text" style="font-size: 0.95rem; color: #e5e7eb; margin: 0;">
-                    <i class="fas fa-info-circle" style="color: var(--main-blue); margin: 0 5px;"></i>
-                    <strong class="lang-text" data-en="Studied the content of the certifications only." data-ar="درست محتوى الشهادات فقط.">Studied the content of the certifications only.</strong>
-                </p>
+                <p class="content-text" style="font-size: 0.95rem; color: #e5e7eb; margin: 0;"><i class="fas fa-info-circle" style="color: var(--main-blue); margin: 0 5px;"></i><strong class="lang-text" data-en="Studied the content of the certifications only." data-ar="درست محتوى الشهادات فقط.">Studied the content of the certifications only.</strong></p>
             </div>
             
             <div class="card" onclick="openCertModal('CompTIA A+', 'CompTIA')" style="border-color: rgba(74, 222, 128, 0.5);">
                 <div style="display: flex; justify-content: space-between; align-items: start;">
-                    <div>
-                        <div class="status-badge badge-completed">
-                            <i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span>
-                        </div>
-                        <h2 class="item-title">CompTIA A+</h2>
-                        <div class="item-org">CompTIA</div>
-                    </div>
+                    <div><div class="status-badge badge-completed"><i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span></div><h2 class="item-title">CompTIA A+</h2><div class="item-org">CompTIA</div></div>
                     <i class="fas fa-expand" style="color: var(--text-muted); font-size: 0.9rem;"></i>
                 </div>
-                <div class="progress-wrap">
-                    <div class="progress-header">
-                        <span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="progress-bg"><div class="progress-fill completed" style="width: 100%;"></div></div>
-                </div>
+                <div class="progress-wrap"><div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>100%</span></div><div class="progress-bg"><div class="progress-fill completed" style="width: 100%;"></div></div></div>
             </div>
 
             <div class="card no-hover">
-                <h2 class="item-title">Network</h2>
-                <div class="item-org">TryHackMe</div>
-                <div class="progress-wrap">
-                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>25%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 25%;"></div></div>
-                </div>
+                <h2 class="item-title">Network</h2><div class="item-org">TryHackMe</div>
+                <div class="progress-wrap"><div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>25%</span></div><div class="progress-bg"><div class="progress-fill" style="width: 25%;"></div></div></div>
             </div>
 
             <div class="card no-hover">
-                <h2 class="item-title">Python</h2>
-                <div class="item-org lang-text" data-en="Programming Language" data-ar="لغة برمجة">Programming Language</div>
-                <div class="progress-wrap">
-                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>10%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 10%;"></div></div>
-                </div>
+                <h2 class="item-title">Python</h2><div class="item-org lang-text" data-en="Programming Language" data-ar="لغة برمجة">Programming Language</div>
+                <div class="progress-wrap"><div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>10%</span></div><div class="progress-bg"><div class="progress-fill" style="width: 10%;"></div></div></div>
             </div>
 
             <div class="card no-hover">
-                <h2 class="item-title">CompTIA Linux+</h2>
-                <div class="item-org">CompTIA</div>
-                <div class="progress-wrap">
-                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>40%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 40%;"></div></div>
-                </div>
+                <h2 class="item-title">CompTIA Linux+</h2><div class="item-org">CompTIA</div>
+                <div class="progress-wrap"><div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>40%</span></div><div class="progress-bg"><div class="progress-fill" style="width: 40%;"></div></div></div>
             </div>
 
             <div class="card no-hover">
-                <h2 class="item-title">CompTIA Security+</h2>
-                <div class="item-org">CompTIA</div>
-                <div class="progress-wrap">
-                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>5%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 5%;"></div></div>
-                </div>
+                <h2 class="item-title">CompTIA Security+</h2><div class="item-org">CompTIA</div>
+                <div class="progress-wrap"><div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>5%</span></div><div class="progress-bg"><div class="progress-fill" style="width: 5%;"></div></div></div>
             </div>
 
             <div class="card no-hover">
-                <h2 class="item-title">eJPT v1</h2>
-                <div class="item-org">eLearnSecurity</div>
-                <div class="progress-wrap">
-                    <div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>1%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 1%;"></div></div>
-                </div>
+                <h2 class="item-title">eJPT v1</h2><div class="item-org">eLearnSecurity</div>
+                <div class="progress-wrap"><div class="progress-header"><span class="lang-text" data-en="Progress" data-ar="التقدم">Progress</span><span>1%</span></div><div class="progress-bg"><div class="progress-fill" style="width: 1%;"></div></div></div>
             </div>
         </div>
 
-        <div id="view-latest" class="view">
-            <div class="page-header">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="page-title txt-gradient lang-text" data-en="Latest" data-ar="أحدث النشاطات">Latest</h1>
+        <div id="view-contact" class="view">
+            <div class="page-header"><button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button><h1 class="page-title txt-gradient lang-text" data-en="Contact Me" data-ar="تواصل معي">Contact Me</h1></div>
+            <div class="card no-hover" style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+                <h2 class="item-title txt-gradient glitch lang-text" data-text="Harith" data-en="Harith" data-ar="Harith" style="margin: 0; font-size: 1.8rem; letter-spacing: 2px;">Harith</h2>
             </div>
+            <div class="card no-hover" style="padding: 16px;">
+                <a href="https://t.me/har37ith" class="link-card" target="_blank"><div class="left"><i class="fab fa-telegram icon" style="color: #229ED9;"></i><div><div class="name lang-text" data-en="Telegram" data-ar="تيليجرام">Telegram</div><div class="user">@har37ith</div></div></div><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="https://www.linkedin.com/in/har37ith" class="link-card" target="_blank"><div class="left"><i class="fab fa-linkedin icon" style="color: #0A66C2;"></i><div><div class="name lang-text" data-en="LinkedIn" data-ar="لينكدإن">LinkedIn</div><div class="user">har37ith</div></div></div><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="https://github.com/har37ith" class="link-card" target="_blank" style="margin-bottom: 0;"><div class="left"><i class="fab fa-github icon" style="color: #ffffff;"></i><div><div class="name lang-text" data-en="GitHub" data-ar="جيت هاب">GitHub</div><div class="user">har37ith</div></div></div><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
 
-            <div class="card" onclick="openView('ctf')" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;">
-                    <div class="icon-box" style="background: rgba(251, 113, 133, 0.15); color: #fb7185;"><i class="fas fa-flag"></i></div>
-                    <h2 class="item-title lang-text" data-en="CTF" data-ar="تحديات التقاط العلم" style="margin:0;">CTF</h2>
-                </div>
-                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
-            </div>
-
-            <div class="card" onclick="openView('github')" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;">
-                    <div class="icon-box" style="background: rgba(255, 255, 255, 0.1); color: #fff;"><i class="fab fa-github"></i></div>
-                    <h2 class="item-title lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب" style="margin:0;">GitHub Repos</h2>
-                </div>
-                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
-            </div>
-
-            <div class="card" onclick="openView('writeups')" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;">
-                    <div class="icon-box" style="background: rgba(52, 211, 153, 0.15); color: #34d399;"><i class="fas fa-book-open"></i></div>
-                    <h2 class="item-title lang-text" data-en="Write-ups" data-ar="كتاباتي" style="margin:0;">Write-ups</h2>
-                </div>
-                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
-            </div>
-
-            <div class="card" onclick="showSoonToast()" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;">
-                    <div class="icon-box" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;"><i class="fas fa-file-pdf"></i></div>
-                    <h2 class="item-title lang-text" data-en="My CV" data-ar="سيرتي الذاتية" style="margin:0;">My CV</h2>
-                </div>
-                <i class="fas fa-download" style="color:var(--text-muted);"></i>
-            </div>
+        <div id="view-github" class="view">
+            <div class="page-header"><button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button><h1 class="page-title txt-gradient lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب">GitHub Repos</h1></div>
+            <p class="content-text lang-text" data-en="Fetching latest repositories..." data-ar="جاري جلب أحدث المستودعات..." style="margin-bottom:20px;" id="gh-loading">Fetching...</p>
+            <div id="github-repos-container"></div>
         </div>
 
         <div id="view-ctf" class="view">
@@ -368,34 +275,10 @@
                 <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
                 <h1 class="page-title txt-gradient lang-text" data-en="CTF" data-ar="تحديات التقاط العلم">CTF</h1>
             </div>
-
             <div class="card no-hover" style="padding: 10px; display:flex; justify-content:center; background: #111; margin-bottom: 24px;">
                 <img src="https://tryhackme-badges.s3.amazonaws.com/har37ith.png" alt="TryHackMe Rank" style="max-width: 100%; border-radius: 8px;" onerror="this.style.display='none'">
             </div>
-
-            <a href="https://tryhackme.com/module/network-fundamentals" target="_blank" class="card" style="border-color: rgba(34, 197, 94, 0.5); display: block; text-decoration: none;">
-                <div style="display: flex; justify-content: space-between; align-items: start;">
-                    <div>
-                        <div class="status-badge badge-completed">
-                            <i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span>
-                        </div>
-                        <h2 class="item-title" style="color: var(--text-main);">Network Fundamentals</h2>
-                        <div class="item-org">TryHackMe</div>
-                    </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"></i>
-                </div>
-            </a>
-            
-        </div>
-
-        <div id="view-github" class="view">
-            <div class="page-header">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="page-title txt-gradient lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب">GitHub Repos</h1>
-            </div>
-            <p class="content-text lang-text" data-en="Fetching latest repositories..." data-ar="جاري جلب أحدث المستودعات..." style="margin-bottom:20px;" id="gh-loading">Fetching...</p>
-            
-            <div id="github-repos-container"></div>
+            <div id="ctf-container"><p class="loading-text">Loading...</p></div>
         </div>
 
         <div id="view-writeups" class="view">
@@ -403,58 +286,18 @@
                 <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
                 <h1 class="page-title txt-gradient lang-text" data-en="Write-ups" data-ar="كتاباتي">Write-ups</h1>
             </div>
-            
-            <div class="card no-hover" style="border-style: dashed;">
-                <div style="text-align:center; color: var(--text-muted); padding: 20px 0;">
-                    <i class="fas fa-keyboard fa-2x" style="margin-bottom:10px; color:var(--main-blue);"></i>
-                    <p class="lang-text" data-en="New write-ups and walkthroughs will be published here soon." data-ar="سيتم نشر مقالات وحلول التحديات هنا قريباً.">New write-ups and walkthroughs will be published here soon.</p>
-                </div>
-            </div>
+            <div id="writeups-container"><p class="loading-text">Loading...</p></div>
         </div>
 
-        <div id="view-contact" class="view">
+        <div id="view-article" class="view">
             <div class="page-header">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="page-title txt-gradient lang-text" data-en="Contact Me" data-ar="تواصل معي">Contact Me</h1>
+                <button class="back-btn" onclick="openView('writeups')"><i class="fas fa-arrow-left"></i></button>
+                <h1 class="page-title txt-gradient" id="article-title">Article</h1>
             </div>
-            
-            <div class="card no-hover" style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-                <h2 class="item-title txt-gradient glitch lang-text" data-text="Harith" data-en="Harith" data-ar="Harith" style="margin: 0; font-size: 1.8rem; letter-spacing: 2px;">Harith</h2>
-            </div>
-
-            <div class="card no-hover" style="padding: 16px;">
-                <a href="https://t.me/har37ith" class="link-card" target="_blank">
-                    <div class="left">
-                        <i class="fab fa-telegram icon" style="color: #229ED9;"></i>
-                        <div>
-                            <div class="name lang-text" data-en="Telegram" data-ar="تيليجرام">Telegram</div>
-                            <div class="user">@har37ith</div>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/in/har37ith" class="link-card" target="_blank">
-                    <div class="left">
-                        <i class="fab fa-linkedin icon" style="color: #0A66C2;"></i>
-                        <div>
-                            <div class="name lang-text" data-en="LinkedIn" data-ar="لينكدإن">LinkedIn</div>
-                            <div class="user">har37ith</div>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-
-                <a href="https://github.com/har37ith" class="link-card" target="_blank" style="margin-bottom: 0;">
-                    <div class="left">
-                        <i class="fab fa-github icon" style="color: #ffffff;"></i>
-                        <div>
-                            <div class="name lang-text" data-en="GitHub" data-ar="جيت هاب">GitHub</div>
-                            <div class="user">har37ith</div>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
+            <div class="card no-hover">
+                <div id="article-content" class="markdown-body">
+                    <p class="loading-text">Loading Article...</p>
+                </div>
             </div>
         </div>
 
@@ -470,29 +313,18 @@
             <div style="width:100%; height:200px; background:rgba(255,255,255,0.02); border: 2px dashed var(--main-blue); display:flex; align-items:center; justify-content:center; border-radius:12px;">
                 <div style="text-align:center; padding: 0 10px;">
                     <i class="fas fa-award fa-3x" style="color:var(--main-blue); margin-bottom:10px;"></i>
-                    <p class="lang-text" 
-                       data-en="Studied content only, no exam taken (Not interested)" 
-                       data-ar="تم دراسة محتوى الشهادة فقط، لم نختبر (غير مهتم)" 
-                       style="color:var(--text-muted); font-size:0.85rem;">
-                       Studied content only, no exam taken (Not interested)
-                    </p>
+                    <p class="lang-text" data-en="Studied content only, no exam taken (Not interested)" data-ar="تم دراسة محتوى الشهادة فقط، لم نختبر (غير مهتم)" style="color:var(--text-muted); font-size:0.85rem;">Studied content only, no exam taken (Not interested)</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Custom Cursor Logic
         const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
 
-        // Auto Year
         document.getElementById('current-year').innerText = new Date().getFullYear();
 
-        // Typing Effect
         const taglineEn = "Cybersecurity Engineering Student | Interested in Ethical Hacking & Penetration Testing";
         const taglineAr = "طالب هندسة أمن سيبراني | مهتم بمجال الهاكينج الأخلاقي واختبار الاختراق";
         let typeTimeout;
@@ -503,24 +335,35 @@
             el.innerHTML = '';
             let i = 0;
             clearTimeout(typeTimeout);
-            
-            function type() {
-                if (i < text.length) {
-                    el.innerHTML += text.charAt(i);
-                    i++;
-                    typeTimeout = setTimeout(type, 35);
-                }
-            }
+            function type() { if (i < text.length) { el.innerHTML += text.charAt(i); i++; typeTimeout = setTimeout(type, 35); } }
             type();
         }
 
-        // Routing Logic
+        let currentLang = 'en';
+        let ctfLoaded = false;
+        let writeupsLoaded = false;
+        let ghLoaded = false;
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'ar' : 'en';
+            document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.getElementById('lang-btn').innerText = (currentLang === 'en') ? 'عربي' : 'EN';
+            document.querySelectorAll('.lang-text').forEach(el => {
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = el.getAttribute('data-' + currentLang); } 
+                else { el.innerHTML = el.getAttribute('data-' + currentLang); }
+            });
+            typeTagline();
+            
+            // Reload dynamic content to translate titles
+            if(window.location.hash === '#writeups') loadWriteups();
+            if(window.location.hash === '#ctf') loadCTF();
+        }
+
         function openView(viewId) { window.location.hash = viewId; }
 
         function handleRouteChange() {
             let hash = window.location.hash.replace('#', '');
             if (!hash) hash = 'dashboard';
-
             document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
             
             const target = document.getElementById('view-' + hash);
@@ -528,8 +371,10 @@
                 target.classList.add('active');
                 window.scrollTo(0, 0); 
                 
-                if(hash === 'github' && !window.ghLoaded) { fetchGitHubRepos(); }
-                if(hash === 'dashboard') { typeTagline(); }
+                if(hash === 'github' && !ghLoaded) fetchGitHubRepos();
+                if(hash === 'dashboard') typeTagline();
+                if(hash === 'ctf' && !ctfLoaded) loadCTF();
+                if(hash === 'writeups' && !writeupsLoaded) loadWriteups();
             } else {
                 document.getElementById('view-dashboard').classList.add('active');
             }
@@ -537,42 +382,98 @@
         window.addEventListener('hashchange', handleRouteChange);
         window.addEventListener('load', () => { handleRouteChange(); typeTagline(); });
 
-        // Language Switch Logic
-        let currentLang = 'en';
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en') ? 'ar' : 'en';
-            document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-            document.getElementById('lang-btn').innerText = (currentLang === 'en') ? 'عربي' : 'EN';
-            
-            document.querySelectorAll('.lang-text').forEach(el => {
-                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = el.getAttribute('data-' + currentLang);
-                } else {
-                    el.innerHTML = el.getAttribute('data-' + currentLang);
-                }
-            });
-            typeTagline();
-        }
+        function openCertModal(title, org) { document.getElementById('modalCertTitle').innerText = title; document.getElementById('modalCertOrg').innerText = org; document.getElementById('certModal').style.display = 'flex'; }
+        function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
+        window.onclick = function(event) { if (event.target == document.getElementById('certModal')) closeCertModal(); }
 
-        // Modal Logic
-        function openCertModal(title, org) {
-            document.getElementById('modalCertTitle').innerText = title;
-            document.getElementById('modalCertOrg').innerText = org;
-            document.getElementById('certModal').style.display = 'flex';
-        }
-        function closeCertModal() {
-            document.getElementById('certModal').style.display = 'none';
-        }
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('certModal')) closeCertModal();
-        }
-
-        // Toast Logic (Soon Notification)
         function showSoonToast() {
             const toast = document.getElementById("soonToast");
             toast.innerText = currentLang === 'en' ? 'Soon...' : 'قريباً...';
             toast.className = "toast show";
             setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
+        // Fetch CTF JSON
+        async function loadCTF() {
+            const container = document.getElementById('ctf-container');
+            try {
+                const response = await fetch('ctf.json');
+                if (!response.ok) throw new Error();
+                const data = await response.json();
+                container.innerHTML = '';
+                
+                data.forEach(item => {
+                    const statusText = currentLang === 'en' ? 'Completed' : 'مكتملة';
+                    container.innerHTML += `
+                    <a href="${item.url}" target="_blank" class="card" style="border-color: rgba(34, 197, 94, 0.5); display: block; text-decoration: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div class="status-badge badge-completed"><i class="fas fa-check-circle"></i> <span>${statusText}</span></div>
+                                <h2 class="item-title" style="color: var(--text-main);">${item.name}</h2>
+                                <div class="item-org">${item.platform}</div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"></i>
+                        </div>
+                    </a>`;
+                });
+                ctfLoaded = true;
+            } catch (e) {
+                container.innerHTML = `<p style="color:red; text-align:center;">Failed to load CTF data. Ensure 'ctf.json' exists.</p>`;
+            }
+        }
+
+        // Fetch Writeups JSON
+        async function loadWriteups() {
+            const container = document.getElementById('writeups-container');
+            try {
+                const response = await fetch('writeups.json');
+                if (!response.ok) throw new Error();
+                const data = await response.json();
+                container.innerHTML = '';
+                
+                if(data.length === 0) {
+                    container.innerHTML = `
+                    <div class="card no-hover" style="border-style: dashed;">
+                        <div style="text-align:center; color: var(--text-muted); padding: 20px 0;">
+                            <i class="fas fa-keyboard fa-2x" style="margin-bottom:10px; color:var(--main-blue);"></i>
+                            <p class="lang-text">${currentLang === 'en' ? 'New write-ups will be published here soon.' : 'سيتم نشر المقالات هنا قريباً.'}</p>
+                        </div>
+                    </div>`;
+                    return;
+                }
+
+                data.forEach(item => {
+                    const title = currentLang === 'en' ? item.title.en : item.title.ar;
+                    const desc = currentLang === 'en' ? item.desc.en : item.desc.ar;
+                    
+                    container.innerHTML += `
+                    <div class="card" onclick="readArticle('${item.file}', '${title}')" style="cursor: pointer;">
+                        <h2 class="item-title"><i class="fas fa-file-alt" style="margin-right:8px; color:var(--main-blue);"></i>${title}</h2>
+                        <p class="content-text" style="font-size:0.9rem; margin-top:8px;">${desc}</p>
+                        <div style="margin-top:10px; font-size:0.8rem; color:var(--text-muted);"><i class="far fa-calendar-alt"></i> ${item.date}</div>
+                    </div>`;
+                });
+                writeupsLoaded = true;
+            } catch (e) {
+                container.innerHTML = `<p style="color:red; text-align:center;">Failed to load writeups data. Ensure 'writeups.json' exists.</p>`;
+            }
+        }
+
+        // Fetch and Render Markdown
+        async function readArticle(filePath, title) {
+            document.getElementById('article-title').innerText = title;
+            openView('article');
+            const contentDiv = document.getElementById('article-content');
+            contentDiv.innerHTML = '<p class="loading-text"><i class="fas fa-spinner fa-spin"></i> Loading...</p>';
+            
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) throw new Error();
+                const markdownText = await response.text();
+                contentDiv.innerHTML = marked.parse(markdownText);
+            } catch (e) {
+                contentDiv.innerHTML = `<p style="color:red;">Error loading article file (${filePath}). Check if the file exists.</p>`;
+            }
         }
 
         // GitHub API Fetch
@@ -602,7 +503,7 @@
                     </a>`;
                     container.innerHTML += card;
                 });
-                window.ghLoaded = true;
+                ghLoaded = true;
             } catch (error) {
                 loading.innerText = currentLang === 'en' ? 'Failed to load repositories.' : 'فشل في تحميل المستودعات.';
             }
