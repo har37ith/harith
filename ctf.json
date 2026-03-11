@@ -4,11 +4,5 @@
     "platform": "TryHackMe",
     "url": "https://tryhackme.com/module/network-fundamentals",
     "status": "completed"
-  },
-  {
-    "name": "Soon",
-    "platform": "TryHackMe",
-    "url": "https://har37ith.github.io/harith/",
-    "status": "completed"
-  
+  },  
 ]
