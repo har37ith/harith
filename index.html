@@ -23,6 +23,7 @@
             --accent-color: #0ea5e9; 
             --accent-glow: rgba(14, 165, 233, 0.15);
             --success-color: #10b981;
+            --warning-color: #f59e0b;
             
             --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -103,6 +104,8 @@
         .card { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 16px; transition: var(--transition-smooth); text-decoration: none; color: inherit; display: block; }
         .card.interactive { cursor: pointer; }
         .card.interactive:hover { border-color: rgba(14, 165, 233, 0.5); background: var(--surface-hover); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .card-title-small { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-primary); }
+        .card-title-small i { color: var(--accent-color); }
         .card-text { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
 
         /* List Items */
@@ -115,6 +118,7 @@
         .icon-purple { color: #a855f7; background: rgba(168, 85, 247, 0.05); border-color: rgba(168, 85, 247, 0.2); }
         .icon-rose { color: #f43f5e; background: rgba(244, 63, 94, 0.05); border-color: rgba(244, 63, 94, 0.2); }
         .icon-gray { color: var(--text-primary); background: rgba(148, 163, 184, 0.05); border-color: rgba(148, 163, 184, 0.2); }
+        .icon-orange { color: var(--warning-color); background: rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.2); }
 
         .list-item:hover .icon-box { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
         .item-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
@@ -123,16 +127,27 @@
         .list-item:hover .arrow-icon { color: var(--accent-color); transform: translateX(5px); }
         body[dir="rtl"] .list-item:hover .arrow-icon { transform: translateX(-5px); }
 
-        /* Learning Progress */
+        /* Learning & Skills Progress */
         .progress-card { padding: 20px; direction: ltr; text-align: left; }
         .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .cert-title { font-size: 1.1rem; font-weight: 700; }
+        .cert-title { font-size: 1.05rem; font-weight: 700; }
         .cert-org { font-size: 0.85rem; color: var(--text-secondary); }
         .progress-track { width: 100%; height: 6px; background: var(--bg-color); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); }
         .progress-fill { height: 100%; width: 0; background: var(--accent-color); border-radius: 10px; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .progress-fill.completed { background: var(--success-color); }
         .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; background: rgba(16, 185, 129, 0.1); color: var(--success-color); border: 1px solid rgba(16, 185, 129, 0.2); }
         
+        /* Skills Specific Styles */
+        .timeline-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; position: relative; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-color); margin-top: 6px; flex-shrink: 0; box-shadow: 0 0 8px var(--accent-glow); }
+        .timeline-content { flex-grow: 1; }
+        .timeline-date { font-size: 0.8rem; font-weight: 700; color: var(--accent-color); margin-bottom: 2px; }
+        .timeline-text { font-size: 0.95rem; font-weight: 500; }
+        .goal-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 0.95rem; font-weight: 500; }
+        .goal-item i { color: var(--accent-color); font-size: 1.2rem; }
+        .goal-item:last-child { margin-bottom: 0; }
+
         .info-note { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: rgba(14, 165, 233, 0.05); border-left: 3px solid var(--accent-color); border-radius: 0 12px 12px 0; margin-bottom: 24px; }
         body[dir="rtl"] .info-note { border-left: none; border-right: 3px solid var(--accent-color); border-radius: 12px 0 0 12px; }
         .info-note i { color: var(--accent-color); font-size: 1.2rem; margin-top: 2px; }
@@ -191,7 +206,7 @@
                     <div class="icon-box icon-rose"><i class="ri-flashlight-line"></i></div>
                     <div>
                         <div class="item-title lang-text" data-en="Latest" data-ar="الأحدث">Latest</div>
-                        <div class="item-subtitle lang-text" data-en="Recent activities & CTFs" data-ar="النشاطات الحديثة والتحديات">Recent activities & CTFs</div>
+                        <div class="item-subtitle lang-text" data-en="Recent activities & updates" data-ar="النشاطات والتحديثات الأخيرة">Recent activities & updates</div>
                     </div>
                 </div>
                 <i class="ri-arrow-right-s-line arrow-icon"></i>
@@ -203,6 +218,17 @@
                     <div>
                         <div class="item-title lang-text" data-en="Learning" data-ar="التعلم">Learning</div>
                         <div class="item-subtitle lang-text" data-en="Certifications and paths" data-ar="الشهادات والمسارات">Certifications and paths</div>
+                    </div>
+                </div>
+                <i class="ri-arrow-right-s-line arrow-icon"></i>
+            </div>
+
+            <div class="card list-item interactive" onclick="openView('skills')">
+                <div class="list-content">
+                    <div class="icon-box icon-orange"><i class="ri-tools-line"></i></div>
+                    <div>
+                        <div class="item-title lang-text" data-en="Skills Me" data-ar="مهاراتي">Skills Me</div>
+                        <div class="item-subtitle lang-text" data-en="Strengths, practical exp & goals" data-ar="نقاط القوة، الخبرة العملية والأهداف">Strengths, practical exp & goals</div>
                     </div>
                 </div>
                 <i class="ri-arrow-right-s-line arrow-icon"></i>
@@ -254,6 +280,17 @@
                 <i class="ri-arrow-right-up-line arrow-icon"></i>
             </a>
 
+            <div class="card list-item interactive" onclick="openView('ctf')">
+                <div class="list-content">
+                    <div class="icon-box icon-green"><i class="ri-flag-fill"></i></div>
+                    <div>
+                        <div class="item-title lang-text" data-en="CTF Challenges" data-ar="تحديات CTF">CTF Challenges</div>
+                        <div class="item-subtitle lang-text" data-en="Completed rooms & badges" data-ar="الغرف المكتملة والشارات">Completed rooms & badges</div>
+                    </div>
+                </div>
+                <i class="ri-arrow-right-s-line arrow-icon"></i>
+            </div>
+
             <div class="card list-item interactive" onclick="openView('github')">
                 <div class="list-content">
                     <div class="icon-box icon-gray"><i class="ri-github-fill"></i></div>
@@ -265,12 +302,12 @@
                 <i class="ri-arrow-right-s-line arrow-icon"></i>
             </div>
 
-            <div class="card list-item interactive" onclick="openView('ctf')">
+            <div class="card list-item interactive" onclick="openView('articles')">
                 <div class="list-content">
-                    <div class="icon-box icon-green"><i class="ri-flag-fill"></i></div>
+                    <div class="icon-box icon-orange"><i class="ri-quill-pen-line"></i></div>
                     <div>
-                        <div class="item-title lang-text" data-en="CTF Challenges" data-ar="تحديات CTF">CTF Challenges</div>
-                        <div class="item-subtitle lang-text" data-en="Completed rooms & badges" data-ar="الغرف المكتملة والشارات">Completed rooms & badges</div>
+                        <div class="item-title lang-text" data-en="My Articles" data-ar="مقالاتي">My Articles</div>
+                        <div class="item-subtitle lang-text" data-en="Security write-ups & blogs" data-ar="مقالات وتقارير أمنية">Security write-ups & blogs</div>
                     </div>
                 </div>
                 <i class="ri-arrow-right-s-line arrow-icon"></i>
@@ -285,6 +322,21 @@
                     </div>
                 </div>
                 <i class="ri-download-2-line arrow-icon"></i>
+            </div>
+        </div>
+
+        <div id="view-articles" class="view">
+            <div class="page-header">
+                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <h2 class="section-title"><i class="ri-quill-pen-line"></i> <span class="lang-text" data-en="My Articles" data-ar="مقالاتي">My Articles</span></h2>
+            </div>
+            
+            <div class="card" style="text-align: center; border-color: rgba(245, 158, 11, 0.3);">
+                <i class="ri-rss-line" style="color: var(--warning-color); font-size: 2.5rem; margin-bottom: 10px; display: block;"></i>
+                <h3 class="lang-text" data-en="Coming Soon!" data-ar="قريباً!" style="margin-bottom: 8px;">Coming Soon!</h3>
+                <p class="lang-text" data-en="This section will be connected to an API to fetch my latest blog posts and security write-ups." data-ar="سيتم ربط هذا القسم لاحقاً عبر API لعرض أحدث مقالاتي وتقاريري الأمنية (Write-ups) تلقائياً." style="color: var(--text-secondary); font-size: 0.95rem;">
+                    This section will be connected to an API to fetch my latest blog posts and security write-ups.
+                </p>
             </div>
         </div>
 
@@ -389,6 +441,190 @@
             </div>
         </div>
 
+        <div id="view-skills" class="view">
+            <div class="page-header">
+                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <h2 class="section-title"><i class="ri-tools-line"></i> <span class="lang-text" data-en="Skills Me" data-ar="مهاراتي">Skills Me</span></h2>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title-small"><i class="ri-route-line"></i> <span class="lang-text" data-en="Cybersecurity Journey" data-ar="مسار الأمن السيبراني">Cybersecurity Journey</span></h3>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="background: var(--success-color); box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date" style="color: var(--success-color);">2025</div>
+                        <div class="timeline-text lang-text" data-en="Complete A+" data-ar="إكمال A+">Complete A+</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <div class="timeline-text lang-text" data-en="Studying Network" data-ar="دراسة الشبكات">Studying Network</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="background: var(--text-secondary); box-shadow: none;"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date" style="color: var(--text-secondary);"><span class="lang-text" data-en="Next" data-ar="القادم">Next</span></div>
+                        <div class="timeline-text lang-text" data-en="Security+" data-ar="Security+">Security+</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="background: var(--text-secondary); box-shadow: none;"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date" style="color: var(--text-secondary);"><span class="lang-text" data-en="Next" data-ar="القادم">Next</span></div>
+                        <div class="timeline-text lang-text" data-en="Linux+" data-ar="Linux+">Linux+</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="background: var(--warning-color); box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date" style="color: var(--warning-color);"><span class="lang-text" data-en="Goal" data-ar="الهدف">Goal</span></div>
+                        <div class="timeline-text lang-text" data-en="eJPT Certification" data-ar="شهادة eJPT">eJPT Certification</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title-small"><i class="ri-user-star-line"></i> <span class="lang-text" data-en="Personal Strengths" data-ar="نقاط القوة الشخصية">Personal Strengths</span></h3>
+                <div class="badges" style="gap: 10px;">
+                    <span class="badge" style="background: rgba(168, 85, 247, 0.1); color: #a855f7; border-color: rgba(168, 85, 247, 0.2);"><span class="lang-text" data-en="Analytical Thinking" data-ar="تفكير تحليلي">Analytical Thinking</span></span>
+                    <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--success-color); border-color: rgba(16, 185, 129, 0.2);"><span class="lang-text" data-en="Problem Solving" data-ar="حل المشكلات">Problem Solving</span></span>
+                    <span class="badge"><span class="lang-text" data-en="Self Learning" data-ar="تعلم ذاتي">Self Learning</span></span>
+                    <span class="badge" style="background: rgba(244, 63, 94, 0.1); color: #f43f5e; border-color: rgba(244, 63, 94, 0.2);"><span class="lang-text" data-en="Research Mindset" data-ar="عقلية بحثية">Research Mindset</span></span>
+                    <span class="badge" style="background: rgba(245, 158, 11, 0.1); color: var(--warning-color); border-color: rgba(245, 158, 11, 0.2);"><span class="lang-text" data-en="Technical Curiosity" data-ar="فضول تقني">Technical Curiosity</span></span>
+                    <span class="badge" style="background: rgba(148, 163, 184, 0.1); color: var(--text-primary); border-color: rgba(148, 163, 184, 0.2);"><span class="lang-text" data-en="Focus & Persistence" data-ar="تركيز ومثابرة">Focus & Persistence</span></span>
+                </div>
+            </div>
+
+            <div class="card progress-card" style="padding: 24px;">
+                <h3 class="card-title-small" style="margin-bottom: 20px;"><i class="ri-terminal-window-line"></i> <span class="lang-text" data-en="Practical Experience" data-ar="الخبرة العملية">Practical Experience</span></h3>
+                
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="TryHackMe Labs" data-ar="مختبرات TryHackMe">TryHackMe Labs</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">35%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="35%"></div></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="CTF Challenges" data-ar="تحديات CTF">CTF Challenges</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">30%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="30%"></div></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Virtual Lab Practice" data-ar="تدريب المختبرات الافتراضية">Virtual Lab Practice</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">40%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="40%"></div></div>
+                </div>
+                <div>
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Hands-on Security Learning" data-ar="تعلم أمني عملي">Hands-on Security Learning</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">40%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="40%"></div></div>
+                </div>
+            </div>
+
+            <div class="card progress-card" style="padding: 24px;">
+                <h3 class="card-title-small" style="margin-bottom: 20px;"><i class="ri-server-line"></i> <span class="lang-text" data-en="Lab Environment" data-ar="بيئة المختبر">Lab Environment</span></h3>
+                
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Virtual Lab Setup" data-ar="إعداد المختبر الافتراضي">Virtual Lab Setup</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">50%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="50%"></div></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Network Lab Practice" data-ar="تدريب شبكات المختبر">Network Lab Practice</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">40%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="40%"></div></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Attack Simulation Practice" data-ar="تدريب محاكاة الهجمات">Attack Simulation Practice</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">30%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="30%"></div></div>
+                </div>
+                <div>
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Security Testing Practice" data-ar="تدريب الاختبار الأمني">Security Testing Practice</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">35%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="35%"></div></div>
+                </div>
+            </div>
+
+            <div class="card progress-card" style="padding: 24px;">
+                <h3 class="card-title-small" style="margin-bottom: 20px;"><i class="ri-shield-keyhole-line"></i> <span class="lang-text" data-en="Security Skills" data-ar="مهارات أمنية">Security Skills</span></h3>
+                
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Reconnaissance" data-ar="الاستطلاع وجمع المعلومات">Reconnaissance</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">35%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="35%"></div></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Network Scanning" data-ar="فحص الشبكات">Network Scanning</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">35%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="35%"></div></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Enumeration" data-ar="التعداد (Enumeration)">Enumeration</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">30%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="30%"></div></div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="Web Security Basics" data-ar="أساسيات أمن الويب">Web Security Basics</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">20%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="20%"></div></div>
+                </div>
+                <div>
+                    <div class="progress-header" style="margin-bottom: 8px;">
+                        <span class="cert-title" style="font-size: 0.95rem;"><span class="lang-text" data-en="CTF Problem Solving" data-ar="حل تحديات CTF">CTF Problem Solving</span></span>
+                        <span style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">30%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill skills-fill" data-width="30%"></div></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title-small"><i class="ri-focus-3-line"></i> <span class="lang-text" data-en="Future Goals" data-ar="الأهداف المستقبلية">Future Goals</span></h3>
+                <div class="goal-item">
+                    <i class="ri-checkbox-circle-line"></i>
+                    <span class="lang-text" data-en="Obtain eJPT Certification" data-ar="الحصول على شهادة eJPT">Obtain eJPT Certification</span>
+                </div>
+                <div class="goal-item">
+                    <i class="ri-checkbox-circle-line"></i>
+                    <span class="lang-text" data-en="Advance in Penetration Testing" data-ar="التقدم في مجال اختبار الاختراق">Advance in Penetration Testing</span>
+                </div>
+                <div class="goal-item">
+                    <i class="ri-checkbox-circle-line"></i>
+                    <span class="lang-text" data-en="Develop Security Tools with Python" data-ar="تطوير أدوات أمنية باستخدام بايثون">Develop Security Tools with Python</span>
+                </div>
+                <div class="goal-item">
+                    <i class="ri-checkbox-circle-line"></i>
+                    <span class="lang-text" data-en="Participate in More CTF Competitions" data-ar="المشاركة في المزيد من مسابقات CTF">Participate in More CTF Competitions</span>
+                </div>
+            </div>
+        </div>
+
         <div id="view-contact" class="view">
             <div class="page-header">
                 <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
@@ -473,9 +709,12 @@
                 target.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
+                // Animate progress bars based on the view
                 if (hash === 'learning') animateProgressBars('.learning-fill');
                 if (hash === 'ctf') animateProgressBars('.ctf-fill');
+                if (hash === 'skills') animateProgressBars('.skills-fill');
                 
+                // Fetch GitHub if opened
                 if (hash === 'github' && !ghLoaded) fetchGitHubRepos();
 
             } else {
@@ -526,7 +765,6 @@
                 });
                 ghLoaded = true;
             } catch (error) {
-                // حالة الفشل الصريحة بناءً على طلبك
                 loading.style.display = 'none';
                 container.innerHTML = `
                     <div class="card" style="text-align: center; border-color: rgba(244, 63, 94, 0.3);">
@@ -539,7 +777,7 @@
                         </a>
                     </div>
                 `;
-                ghLoaded = true; // لكي لا يحاول إرسال طلبات متكررة كلما دخل القسم
+                ghLoaded = true;
             }
         }
 
