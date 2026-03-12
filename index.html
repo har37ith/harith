@@ -214,8 +214,7 @@
             <div class="card no-hover">
                 <h2 class="item-title lang-text" data-en="Introduction" data-ar="مقدمة">Introduction</h2><br>
                 <p class="content-text lang-text" data-en="Hello, I'm Harith from Iraq, a Cybersecurity Engineering student highly interested in Penetration Testing and Offensive Security.<br><br>Currently, I am following a structured side-learning path focused on practical cybersecurity skills. I am passionate about understanding how systems operate, discovering vulnerabilities, and developing my technical skills through hands-on practice." data-ar="أهلاً، أنا حارث من العراق طالب هندسة الأمن السيبراني، ومهتم جداً بمجال اختبار الاختراق (Penetration Testing) والأمن الهجومي (Offensive Security).<br><br>حالياً أتبع مساراً تعليمياً منظماً بشكل جانبي يركز على المهارات العملية للسايبر سكيورتي. وشغوف بفهم كيفية عمل الأنظمة واكتشاف ثغراتها وتطوير مهاراتي التقنية من خلال التطبيق العملي.">
-                   Hello, I'm Harith from Iraq...
-                </p>
+                   </p>
             </div>
         </div>
 
@@ -340,15 +339,23 @@
         let currentLang = 'en';
         let ghLoaded = false;
 
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en') ? 'ar' : 'en';
+        // دالة جديدة لتطبيق اللغة على جميع العناصر بشكل كامل
+        function applyLanguage() {
             document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
             document.getElementById('lang-btn').innerText = (currentLang === 'en') ? 'عربي' : 'EN';
             document.querySelectorAll('.lang-text').forEach(el => {
-                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = el.getAttribute('data-' + currentLang); } 
-                else { el.innerHTML = el.getAttribute('data-' + currentLang); }
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { 
+                    el.placeholder = el.getAttribute('data-' + currentLang); 
+                } else { 
+                    el.innerHTML = el.getAttribute('data-' + currentLang); 
+                }
             });
             typeTagline();
+        }
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'ar' : 'en';
+            applyLanguage();
         }
 
         function openView(viewId) { window.location.hash = viewId; }
@@ -369,8 +376,10 @@
                 document.getElementById('view-dashboard').classList.add('active');
             }
         }
+        
         window.addEventListener('hashchange', handleRouteChange);
-        window.addEventListener('load', () => { handleRouteChange(); typeTagline(); });
+        // تم تحديث هذا السطر لتشغيل تطبيق اللغة فور فتح الصفحة
+        window.addEventListener('load', () => { applyLanguage(); handleRouteChange(); });
 
         function openCertModal(title, org) { document.getElementById('modalCertTitle').innerText = title; document.getElementById('modalCertOrg').innerText = org; document.getElementById('certModal').style.display = 'flex'; }
         function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
