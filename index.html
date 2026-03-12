@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
         :root {
@@ -131,20 +129,7 @@
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-        /* Article Markdown Styling */
-        .markdown-body { color: var(--text-main); line-height: 1.8; font-size: 1.05rem; }
-        .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: var(--main-blue); margin-top: 24px; margin-bottom: 12px; font-weight: 700; }
-        .markdown-body p { margin-bottom: 16px; color: var(--text-muted); }
-        .markdown-body pre { background: #111; border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; overflow-x: auto; margin-bottom: 20px; direction: ltr; }
-        .markdown-body code { font-family: 'Courier New', Courier, monospace; color: #f472b6; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
-        .markdown-body pre code { background: transparent; padding: 0; color: #a855f7; }
-        .markdown-body a { color: var(--main-blue); text-decoration: none; }
-        .markdown-body a:hover { text-decoration: underline; }
-        .markdown-body ul, .markdown-body ol { margin-bottom: 16px; padding-inline-start: 20px; color: var(--text-muted); }
-        .markdown-body img { max-width: 100%; border-radius: 12px; margin-bottom: 16px; border: 1px solid var(--card-border); }
-        
         .loading-text { text-align: center; color: var(--main-blue); font-weight: bold; margin: 20px 0; }
-
         .footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px; }
     </style>
 </head>
@@ -188,17 +173,39 @@
         <div id="view-latest" class="view">
             <div class="page-header"><button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button><h1 class="page-title txt-gradient lang-text" data-en="Latest" data-ar="أحدث النشاطات">Latest</h1></div>
             
-            <div class="card" onclick="openView('ctf')" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(251, 113, 133, 0.15); color: #fb7185;"><i class="fas fa-flag"></i></div><h2 class="item-title lang-text" data-en="CTF" data-ar="تحديات التقاط العلم" style="margin:0;">CTF</h2></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
-            </div>
+            <a href="https://t.me/eof37" target="_blank" class="card" style="display:flex; align-items:center; justify-content:space-between; text-decoration: none;">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="icon-box" style="background: rgba(34, 158, 217, 0.15); color: #229ED9;"><i class="fab fa-telegram-plane"></i></div>
+                    <div>
+                        <h2 class="item-title lang-text" data-en="Elite Of Future (EOF)" data-ar="نخبة المستقبل (EOF)" style="margin:0;">Elite Of Future (EOF)</h2>
+                        <div class="item-org lang-text" data-en="Cybersecurity Community" data-ar="مجتمع سيبراني متكامل">Cybersecurity Community</div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--text-muted);"></i>
+            </a>
+
             <div class="card" onclick="openView('github')" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(255, 255, 255, 0.1); color: #fff;"><i class="fab fa-github"></i></div><h2 class="item-title lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب" style="margin:0;">GitHub Repos</h2></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="icon-box" style="background: rgba(255, 255, 255, 0.1); color: #fff;"><i class="fab fa-github"></i></div>
+                    <h2 class="item-title lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب" style="margin:0;">GitHub Repos</h2>
+                </div>
+                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
             </div>
-            <div class="card" onclick="openView('writeups')" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(52, 211, 153, 0.15); color: #34d399;"><i class="fas fa-book-open"></i></div><h2 class="item-title lang-text" data-en="Write-ups" data-ar="كتاباتي" style="margin:0;">Write-ups</h2></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
+
+            <div class="card" onclick="openView('ctf')" style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="icon-box" style="background: rgba(251, 113, 133, 0.15); color: #fb7185;"><i class="fas fa-flag"></i></div>
+                    <h2 class="item-title lang-text" data-en="CTF" data-ar="تحديات التقاط العلم" style="margin:0;">CTF</h2>
+                </div>
+                <i class="fas fa-chevron-right" style="color:var(--text-muted);"></i>
             </div>
+
             <div class="card" onclick="showSoonToast()" style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;"><div class="icon-box" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;"><i class="fas fa-file-pdf"></i></div><h2 class="item-title lang-text" data-en="My CV" data-ar="سيرتي الذاتية" style="margin:0;">My CV</h2></div><i class="fas fa-download" style="color:var(--text-muted);"></i>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="icon-box" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;"><i class="fas fa-file-pdf"></i></div>
+                    <h2 class="item-title lang-text" data-en="CV" data-ar="السيرة الذاتية" style="margin:0;">CV</h2>
+                </div>
+                <i class="fas fa-download" style="color:var(--text-muted);"></i>
             </div>
         </div>
 
@@ -278,27 +285,28 @@
             <div class="card no-hover" style="padding: 10px; display:flex; justify-content:center; background: #111; margin-bottom: 24px;">
                 <img src="https://tryhackme-badges.s3.amazonaws.com/har37ith.png" alt="TryHackMe Rank" style="max-width: 100%; border-radius: 8px;" onerror="this.style.display='none'">
             </div>
-            <div id="ctf-container"><p class="loading-text">Loading...</p></div>
-        </div>
-
-        <div id="view-writeups" class="view">
-            <div class="page-header">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="page-title txt-gradient lang-text" data-en="Write-ups" data-ar="كتاباتي">Write-ups</h1>
-            </div>
-            <div id="writeups-container"><p class="loading-text">Loading...</p></div>
-        </div>
-
-        <div id="view-article" class="view">
-            <div class="page-header">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-                <h1 class="page-title txt-gradient" id="article-title">Article</h1>
-            </div>
-            <div class="card no-hover">
-                <div id="article-content" class="markdown-body" dir="auto">
-                    <p class="loading-text">Loading Article...</p>
+            
+            <a href="https://tryhackme.com/room/picklerick" target="_blank" class="card" style="border-color: rgba(34, 197, 94, 0.5); display: block; text-decoration: none;">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <div class="status-badge badge-completed"><i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span></div>
+                        <h2 class="item-title" style="color: var(--text-main);">Pickle Rick</h2>
+                        <div class="item-org">TryHackMe</div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"></i>
                 </div>
-            </div>
+            </a>
+            
+            <a href="https://tryhackme.com/room/basicpentestingjt" target="_blank" class="card" style="border-color: rgba(34, 197, 94, 0.5); display: block; text-decoration: none;">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <div class="status-badge badge-completed"><i class="fas fa-check-circle"></i> <span class="lang-text" data-en="Completed" data-ar="مكتملة">Completed</span></div>
+                        <h2 class="item-title" style="color: var(--text-main);">Basic Pentesting</h2>
+                        <div class="item-org">TryHackMe</div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"></i>
+                </div>
+            </a>
         </div>
 
     </div>
@@ -340,8 +348,6 @@
         }
 
         let currentLang = 'en';
-        let ctfLoaded = false;
-        let writeupsLoaded = false;
         let ghLoaded = false;
 
         function toggleLanguage() {
@@ -353,10 +359,6 @@
                 else { el.innerHTML = el.getAttribute('data-' + currentLang); }
             });
             typeTagline();
-            
-            // Reload dynamic content to translate titles
-            if(window.location.hash === '#writeups') loadWriteups();
-            if(window.location.hash === '#ctf') loadCTF();
         }
 
         function openView(viewId) { window.location.hash = viewId; }
@@ -373,8 +375,6 @@
                 
                 if(hash === 'github' && !ghLoaded) fetchGitHubRepos();
                 if(hash === 'dashboard') typeTagline();
-                if(hash === 'ctf' && !ctfLoaded) loadCTF();
-                if(hash === 'writeups' && !writeupsLoaded) loadWriteups();
             } else {
                 document.getElementById('view-dashboard').classList.add('active');
             }
@@ -391,89 +391,6 @@
             toast.innerText = currentLang === 'en' ? 'Soon...' : 'قريباً...';
             toast.className = "toast show";
             setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-        }
-
-        // Fetch CTF JSON
-        async function loadCTF() {
-            const container = document.getElementById('ctf-container');
-            try {
-                const response = await fetch('ctf.json');
-                if (!response.ok) throw new Error();
-                const data = await response.json();
-                container.innerHTML = '';
-                
-                data.forEach(item => {
-                    const statusText = currentLang === 'en' ? 'Completed' : 'مكتملة';
-                    container.innerHTML += `
-                    <a href="${item.url}" target="_blank" class="card" style="border-color: rgba(34, 197, 94, 0.5); display: block; text-decoration: none;">
-                        <div style="display: flex; justify-content: space-between; align-items: start;">
-                            <div>
-                                <div class="status-badge badge-completed"><i class="fas fa-check-circle"></i> <span>${statusText}</span></div>
-                                <h2 class="item-title" style="color: var(--text-main);">${item.name}</h2>
-                                <div class="item-org">${item.platform}</div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"></i>
-                        </div>
-                    </a>`;
-                });
-                ctfLoaded = true;
-            } catch (e) {
-                container.innerHTML = `<p style="color:red; text-align:center;">Failed to load CTF data. Ensure 'ctf.json' exists.</p>`;
-            }
-        }
-
-        // Fetch Writeups JSON
-        async function loadWriteups() {
-            const container = document.getElementById('writeups-container');
-            try {
-                const response = await fetch('writeups.json');
-                if (!response.ok) throw new Error();
-                const data = await response.json();
-                container.innerHTML = '';
-                
-                if(data.length === 0) {
-                    container.innerHTML = `
-                    <div class="card no-hover" style="border-style: dashed;">
-                        <div style="text-align:center; color: var(--text-muted); padding: 20px 0;">
-                            <i class="fas fa-keyboard fa-2x" style="margin-bottom:10px; color:var(--main-blue);"></i>
-                            <p class="lang-text">${currentLang === 'en' ? 'New write-ups will be published here soon.' : 'سيتم نشر المقالات هنا قريباً.'}</p>
-                        </div>
-                    </div>`;
-                    return;
-                }
-
-                data.forEach(item => {
-                    const title = currentLang === 'en' ? item.title.en : item.title.ar;
-                    const desc = currentLang === 'en' ? item.desc.en : item.desc.ar;
-                    
-                    container.innerHTML += `
-                    <div class="card" onclick="readArticle('${item.file}', '${title}')" style="cursor: pointer;">
-                        <h2 class="item-title"><i class="fas fa-file-alt" style="margin-right:8px; color:var(--main-blue);"></i>${title}</h2>
-                        <p class="content-text" style="font-size:0.9rem; margin-top:8px;">${desc}</p>
-                        <div style="margin-top:10px; font-size:0.8rem; color:var(--text-muted);"><i class="far fa-calendar-alt"></i> ${item.date}</div>
-                    </div>`;
-                });
-                writeupsLoaded = true;
-            } catch (e) {
-                container.innerHTML = `<p style="color:red; text-align:center;">Failed to load writeups data. Ensure 'writeups.json' exists.</p>`;
-            }
-        }
-
-        // Fetch and Render Markdown
-        async function readArticle(filePath, title) {
-            document.getElementById('article-title').innerText = title;
-            openView('article');
-            const contentDiv = document.getElementById('article-content');
-            contentDiv.innerHTML = '<p class="loading-text"><i class="fas fa-spinner fa-spin"></i> Loading...</p>';
-            
-            try {
-                const response = await fetch(filePath);
-                if (!response.ok) throw new Error();
-                const markdownText = await response.text();
-                contentDiv.innerHTML = marked.parse(markdownText);
-            } catch (e) {
-                contentDiv.innerHTML = `<p style="color:red;">Error loading article file (${filePath}). Check if the file exists.</p>`;
-            }
         }
 
         // GitHub API Fetch
