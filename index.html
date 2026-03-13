@@ -145,7 +145,6 @@
         .info-note i { color: var(--accent-color); font-size: 1.2rem; margin-top: 2px; }
         .info-note p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; font-weight: 500; }
 
-        /* تنسيقات قارئ المقالات (Markdown Styles) تم التعديل هنا للاتجاه التلقائي */
         .markdown-body { text-align: start; font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); }
         .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 { margin-top: 30px; margin-bottom: 15px; color: var(--text-primary); font-weight: 700; }
         .markdown-body h1 { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;}
@@ -261,7 +260,7 @@
 
         <div id="view-about" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-user-smile-line"></i> <span class="lang-text" data-en="About" data-ar="نبذة عني">About</span></h2>
             </div>
             <div class="card">
@@ -274,7 +273,7 @@
 
         <div id="view-latest" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-flashlight-line"></i> <span class="lang-text" data-en="Latest" data-ar="الأحدث">Latest</span></h2>
             </div>
             
@@ -336,7 +335,7 @@
 
         <div id="view-articles" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-quill-pen-line"></i> <span class="lang-text" data-en="My Articles" data-ar="مقالاتي">My Articles</span></h2>
             </div>
             
@@ -349,7 +348,7 @@
 
         <div id="view-read-article" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="openView('articles')"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-book-open-line"></i> <span class="lang-text" data-en="Reader" data-ar="القارئ">Reader</span></h2>
             </div>
             <div class="card" id="article-content-container" style="padding: 30px 24px;">
@@ -358,7 +357,7 @@
 
         <div id="view-github" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-github-fill"></i> <span class="lang-text" data-en="GitHub Repos" data-ar="مستودعات جيت هاب">GitHub Repos</span></h2>
             </div>
             
@@ -371,7 +370,7 @@
 
         <div id="view-ctf" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-flag-line"></i> <span class="lang-text" data-en="CTF Challenges" data-ar="تحديات CTF">CTF Challenges</span></h2>
             </div>
             
@@ -396,7 +395,7 @@
 
         <div id="view-learning" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-book-read-line"></i> <span class="lang-text" data-en="Learning" data-ar="التعلم">Learning</span></h2>
             </div>
             
@@ -459,7 +458,7 @@
 
         <div id="view-skills" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-tools-line"></i> <span class="lang-text" data-en="Skills Me" data-ar="مهاراتي">Skills Me</span></h2>
             </div>
 
@@ -656,7 +655,7 @@
 
         <div id="view-contact" class="view">
             <div class="page-header">
-                <button class="icon-btn back-btn" onclick="window.history.back()"><i class="ri-arrow-left-line"></i></button>
+                <button class="icon-btn back-btn" onclick="goBack()"><i class="ri-arrow-left-line"></i></button>
                 <h2 class="section-title"><i class="ri-links-line"></i> <span class="lang-text" data-en="Contact Me" data-ar="تواصل معي">Contact Me</span></h2>
             </div>
             
@@ -702,6 +701,17 @@
         let ghLoaded = false;
         let articlesLoaded = false; 
         let articlesData = []; 
+
+        // === التحديث الأهم: وظيفة رجوع ذكية موحدة ===
+        function goBack() {
+            // إذا كان المستخدم يتصفح داخل الموقع وعنده تاريخ رجوع، نرجعه خطوة للخلف
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // إذا دخل رابط فرعي مباشرة بدون تاريخ، نرجعه للواجهة الرئيسية كإجراء احتياطي
+                window.location.hash = 'dashboard';
+            }
+        }
 
         function applyLanguage() {
             document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
